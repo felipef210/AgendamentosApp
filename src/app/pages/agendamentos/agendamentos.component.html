@@ -1,0 +1,45 @@
+<app-header></app-header>
+
+<main>
+  <section class="secao1">
+    <div>
+      <h1>{{ authService.getRole() === 'admin' ? 'Todos os Agendamentos' : 'Seus Agendamentos' }}</h1>
+      <span>{{ authService.getRole() === 'admin' ? 'Gerencie os agendamentos dos clientes' : 'Gerencie seus serviços agendados' }}</span>
+    </div>
+
+    <button mat-flat-button (click)="openDialog()"><mat-icon>add</mat-icon>Novo Agendamento</button>
+  </section>
+
+  <section class="secao2">
+    @if (agendamento$ | async) {
+      @let agendamentos = agendamento$ | async;
+
+      @if (agendamentos?.length === 0) {
+        <div class="sem-agendamentos">
+          <img src="icones/calendario-cinza.png" alt="Icone calendário">
+          <p>{{ authService.getRole() === 'admin' ? 'Nenhum agendamento encontrado' : 'Você ainda não tem agendamentos' }}</p>
+
+          @if (authService.getRole() === 'user') {
+            <button mat-flat-button (click)="openDialog()"><mat-icon>add</mat-icon>Fazer meu primeiro agendamento</button>
+          }
+        </div>
+      }
+
+      @else {
+        @for (agendamento of agendamentos; track $index) {
+          <app-card-agendamento
+            [agendamento]="agendamento"
+            (delecao)="deletarAgendamento()"
+            (alteracao)="editarAgendamento()">
+          </app-card-agendamento>
+        }
+
+        <div class="espacador"></div>
+      }
+    }
+  </section>
+</main>
+
+
+
+

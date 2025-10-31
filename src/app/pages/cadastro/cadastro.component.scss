@@ -1,0 +1,16 @@
+section {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('../../../../public/background.jpg');
+  background-position: center;
+  background-size: cover;
+}
+
+@media screen and (max-width: 720px) {
+  section {
+    padding: 4rem 0;
+  }
+}

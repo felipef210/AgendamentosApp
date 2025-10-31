@@ -1,0 +1,148 @@
+.card-agendamento {
+  border: 2px solid #EBE6F0;
+  border-radius: 1rem;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  transition: .3s ease-in-out;
+
+  &:hover {
+    box-shadow: -5px 5px 10px rgb(112, 111, 111);
+    transform: translateX(5px) translateY(-5px);
+  }
+
+  .linha1 {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 2rem;
+
+    div {
+      .botao-editar, .botao-excluir {
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 18px;
+        border-radius: .8rem;
+        padding: 1rem 1.3rem;
+        cursor: pointer;
+        transition: .5s ease;
+      }
+
+      .botao-editar {
+        background-image: url('../../../../public/icones/editar-preto.png');
+        background-color: white;
+        border: 1px solid gray;
+        margin-right: .5rem;
+
+        &:hover {
+          background-color: #D65CAD;
+          background-image: url('../../../../public/icones/editar-branco.png');
+        }
+
+        img {
+          width: 18px;
+        }
+      }
+
+      .botao-excluir {
+        background-color: red;
+        border: none;
+        background-image: url('../../../../public/icones/trash.png');
+
+        &:hover {
+          background-color: rgb(255, 89, 89);
+        }
+      }
+
+      div {
+        display: flex;
+        span {
+          color: gray;
+          font-weight: 500;
+          font-size: .9rem;
+          margin-right: 1rem;
+          display: flex;
+          align-items: center;
+
+          img {
+            width: 20px;
+            margin-right: .2rem;
+          }
+
+        }
+      }
+    }
+  }
+
+  .linha2 {
+    display: flex;
+    width: 70%;
+    justify-content: space-between;
+
+    p {
+      font-size: 14px;
+      font-weight: 400;
+      color: gray;
+      margin-bottom: .3rem;
+      line-height: 18px;
+      display: flex;
+      align-items: center;
+      gap: 2px;
+
+      img {
+        width: 14px;
+      }
+    }
+
+    span {
+      font-weight: 600;
+    }
+
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .card-agendamento {
+    padding: 1 !important;
+  }
+
+  .linha1 {
+    h3 {
+      font-size: 18px !important;
+      max-width: 150px;
+    }
+
+    div {
+      flex-direction: column;
+      span {
+        font-size: 13px !important;
+        margin-top: .2rem;
+        max-width: 120px;
+
+        img {
+          width: 14px !important;
+        }
+      }
+    }
+
+    div {
+      .botao-editar, .botao-excluir {
+        padding: 1rem !important;
+      }
+
+      .botao-editar {
+        margin-right: .2rem !important;
+      }
+    }
+  }
+
+  .linha2 {
+    width: 100% !important;
+
+    p {
+      font-size: 12px !important;
+    }
+
+    span {
+      font-size: 13px !important;
+    }
+  }
+}

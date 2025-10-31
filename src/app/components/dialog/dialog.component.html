@@ -1,0 +1,7 @@
+<section>
+  <h2>{{data ? 'Editar Agendamento' : 'Novo Agendamento'}}</h2>
+  <mat-dialog-content>
+    <app-form-agendamento [agendamento]="data" (formSubmit)="fecharDialog()"></app-form-agendamento>
+  </mat-dialog-content>
+</section>
+

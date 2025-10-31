@@ -1,0 +1,103 @@
+<h1>{{ titulo() }}</h1>
+
+<form [formGroup]="form" class="formulario" (ngSubmit)="onSubmit()">
+  @if (!isLogin()) {
+    <mat-form-field class="full-width" appearance="outline">
+      <mat-label>Nome</mat-label>
+      <input matInput placeholder="Digite o seu nome" formControlName="nome">
+      <mat-icon matSuffix>person</mat-icon>
+
+      @if (form.get('nome')?.hasError('required')) {
+        <mat-error>O nome é obrigatório</mat-error>
+      }
+    </mat-form-field><br>
+
+    <div class="half-width" [ngClass]="{ 'full-width': titulo() === 'Editar perfil', 'half-width': titulo() !== 'Editar perfil' }">
+      @if (titulo() !== 'Editar perfil') {
+        <mat-form-field appearance="outline">
+          <mat-label>Data de nascimento</mat-label>
+          <input matInput [matDatepicker]="nascimento" formControlName="dataNascimento">
+          <mat-datepicker-toggle matIconSuffix [for]="nascimento"></mat-datepicker-toggle>
+          <mat-datepicker #nascimento></mat-datepicker>
+
+          @if (form.get('dataNascimento')?.hasError('required')) {
+            <mat-error>A data de nascimento é obrigatória</mat-error>
+          }
+        </mat-form-field>
+      }
+
+      <mat-form-field appearance="outline" [class.full-width]="titulo() === 'Editar perfil'">
+        <mat-label>Telefone</mat-label>
+        <span matTextPrefix>+55 &nbsp;</span>
+        <input type="tel" matInput placeholder="" formControlName="telefone">
+        <mat-icon matSuffix>phone_enabled</mat-icon>
+
+        @if (form.get('telefone')?.hasError('required')) {
+          <mat-error>O número de telefone é obrigatório</mat-error>
+        }
+
+        @else if (form.get('telefone')?.hasError('pattern')) {
+          <mat-error>Número de telefone inválido</mat-error>
+        }
+      </mat-form-field>
+    </div>
+  }
+
+  <mat-form-field class="full-width" appearance="outline">
+    <mat-label>E-mail</mat-label>
+    <input matInput placeholder="Digite o seu e-mail" formControlName="email">
+    <mat-icon matSuffix>mail</mat-icon>
+
+    @if (form.get('email')?.hasError('required')) {
+      <mat-error>O e-mail é obrigatório</mat-error>
+    }
+
+    @else if (form.get('email')?.hasError('email')) {
+      <mat-error>E-mail inválido</mat-error>
+    }
+  </mat-form-field><br>
+
+
+  @if (titulo() !== 'Editar perfil') {
+    <div [ngClass]="{ 'full-width': isLogin(), 'half-width': !isLogin() }">
+      <mat-form-field appearance="outline" [class.full-width]="isLogin()">
+        <mat-label>Senha</mat-label>
+        <input matInput [type]="hidePassword() ? 'password' : 'text'" placeholder="Digite a sua senha" formControlName="senha"/>
+        <button type="button" mat-icon-button matSuffix (click)="changeVisibilityPassword()">
+          <mat-icon>{{hidePassword() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+
+        @if (form.get('senha')?.hasError('required')) {
+          <mat-error>A senha é obrigatória</mat-error>
+        }
+
+        @else if (form.get('senha')?.hasError('pattern')) {
+          <mat-error>Use 8 caracteres com número, letra e símbolo</mat-error>
+        }
+      </mat-form-field>
+
+      @if (!isLogin()) {
+        <mat-form-field appearance="outline">
+          <mat-label>Confirmar senha</mat-label>
+          <input matInput [type]="hideConfirmPassword() ? 'password' : 'text'" placeholder="Confirme a sua senha" formControlName="confirmarSenha"/>
+          <button type="button" mat-icon-button matSuffix (click)="changeVisibilityConfirmPassword()">
+            <mat-icon>{{hideConfirmPassword() ? 'visibility_off' : 'visibility'}}</mat-icon>
+          </button>
+
+          @if (getErroConfirmarSenha()) {
+            <mat-error>{{ getErroConfirmarSenha() }}</mat-error>
+          }
+        </mat-form-field>
+      }
+    </div>
+  }
+
+  @if (mensagemErro()) {
+    <mat-error style="margin-bottom: 1rem; margin-top: -1.5rem;">{{ mensagemErro() }}</mat-error>
+  }
+  <button mat-flat-button [disabled]="form.invalid || !form.dirty" [class.disabled]>{{ textoBotao() }}</button>
+
+  @if (titulo() !== 'Editar perfil') {
+    <a mat-raised-button routerLink="/">Voltar para o início</a>
+  }
+</form>

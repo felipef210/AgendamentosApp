@@ -1,0 +1,82 @@
+.cabecalho {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2rem;
+  border-bottom: 2px solid #EBE6F0;
+  box-shadow: 0px 5px 10px rgb(175, 175, 175);
+  margin-bottom: 3rem;
+
+  .cabecalho__logo, .cabecalho__menu {
+    display: flex;
+    align-items: center;
+  }
+
+  .cabecalho__logo {
+    a {
+      text-decoration: none;
+      color: black;
+      display: flex;
+      align-items: center;
+    }
+
+    img {
+      width: 32px;
+      margin-right: .2rem;
+    }
+  }
+
+  .cabecalho__menu {
+    a {
+      margin-right: 1rem;
+      cursor: pointer;
+      color: black;
+      text-decoration: none;
+    }
+
+    button {
+      background-image: url('../../../../public/icones/logout-preto.png');
+      background-position: 12px center;
+      background-repeat: no-repeat;
+      background-size: 20px;
+      background-color: white;
+      padding: .5rem 0;
+      padding-left: 2.2rem;
+      width: 85px;
+      border-radius: .9rem;
+      border: 1px solid rgb(204, 204, 204);
+      cursor: pointer;
+      transition: .3s ease;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+
+      &:hover {
+        background-color: #D65CAD;
+        border: 1px solid #D65CAD;
+        color: white;
+        background-image: url('../../../../public/icones/logout-branco.png');
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .cabecalho {
+    padding: 1rem;
+  }
+
+  .cabecalho__logo {
+    h2 {
+      display: none;
+    }
+  }
+
+  .cabecalho__menu {
+    button {
+      font-size: .9rem;
+      background-size: 18px !important;
+
+    }
+  }
+}

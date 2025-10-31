@@ -1,0 +1,86 @@
+h1 {
+  margin-bottom: 1rem;
+  font-size: 3rem;
+  background: linear-gradient(90deg, #9040DE 30%, #B556D2 50%, #D65DB0 100%);
+
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+}
+
+.formulario {
+  margin: 0 auto;
+  text-align: center;
+  width: 600px;
+
+  mat-form-field {
+    margin-bottom: 1rem;
+  }
+
+  .full-width {
+    width: 100%;
+  }
+
+  .half-width {
+    display: flex;
+    justify-content: space-between;
+
+    mat-form-field {
+      width: 49%;
+    }
+  }
+
+
+  button, a {
+    width: 80%;
+  }
+}
+
+.mat-mdc-unelevated-button {
+  margin-bottom: .5rem;
+}
+
+@media screen and (max-width: 720px) {
+  h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .formulario {
+    width: 450px;
+
+    .half-width {
+      flex-direction: column;
+
+      mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+
+  button, a {
+    width: 100% !important;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  h1 {
+    font-size: 2.5rem !important;
+  }
+
+  .formulario {
+    width: 320px;
+
+    .half-width {
+      flex-direction: column;
+
+      mat-form-field {
+        width: 100%;
+      }
+    }
+  }
+
+  button, a {
+    width: 100% !important;
+  }
+}

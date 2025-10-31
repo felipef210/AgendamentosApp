@@ -1,0 +1,47 @@
+<form [formGroup]="form" (ngSubmit)="submit()">
+  <label>Serviço</label><br>
+  <select formControlName="servico">
+    <option selected disabled value="">Selecione uma opção...</option>
+    @for (servico of servicos; track $index) {
+      <option [value]="servico">{{ servico }}</option>
+    }
+  </select><br>
+
+  @if (form.get('servico')?.invalid && form.get('servico')?.touched || form.get('servico')?.dirty) {
+    <span class="erro">
+      @if (form.get('servico')?.hasError('required')) {
+        O serviço é obrigatório.
+      }
+    </span><br>
+  }
+
+  <label>Data</label>
+  <input type="date" formControlName="data" />
+
+  @if (form.get('data')?.invalid && form.get('data')?.touched || form.get('data')?.dirty) {
+    <span class="erro">
+      @if (form.get('data')?.hasError('required')) {
+        A data é obrigatória.
+      }
+       @else if (form.get('data')?.hasError('dataAnterior')) {
+        A data não pode ser anterior à data atual.
+      }
+    </span><br>
+  }
+
+  <label>Horário</label><br>
+  <input type="time" formControlName="hora"/>
+
+  @if (form.get('hora')?.invalid && form.get('hora')?.touched || form.get('hora')?.dirty) {
+    <span class="erro">
+      @if (form.get('hora')?.hasError('required')) {
+        O horário é obrigatório.
+      }
+    </span><br>
+  }
+
+  <span class="erro">{{ mensagemErro }}</span>
+  <button mat-flat-button [disabled]="form.invalid || !form.dirty">
+    {{ agendamento ? 'Salvar alterações' : 'Confirmar agendamento' }}
+  </button>
+</form>

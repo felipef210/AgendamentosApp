@@ -1,0 +1,64 @@
+
+
+main {
+  margin: 0 2rem;
+
+  .secao1 {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 3rem;
+
+    h1 {
+      font-size: 1.8rem;
+      margin-bottom: .5rem;
+    }
+
+    span {
+      color: gray;
+      font-size: .9rem;
+      font-weight: 500;
+    }
+  }
+
+  .secao2 {
+    .sem-agendamentos {
+      border: 2px solid #EBE6F0;
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+
+      img {
+        width: 50px;
+      }
+
+      p {
+        color: gray;
+        font-weight: 500;
+        margin: .8rem 0;
+      }
+    }
+
+    .espacador {
+      padding: 1rem 0;
+    }
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .secao1 {
+    flex-direction: column;
+
+    div {
+      text-align: center;
+      margin-bottom: 1rem;
+
+      h1 {
+        margin-bottom: .1rem;
+      }
+    }
+  }
+
+}
+
+

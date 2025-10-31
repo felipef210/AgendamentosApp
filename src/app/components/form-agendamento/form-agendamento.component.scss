@@ -1,0 +1,26 @@
+input, select {
+  width: 100%;
+  margin: .5rem 0;
+  padding: .8rem;
+  box-sizing: border-box;
+  border-radius: .8rem;
+  border: 1px solid black;
+
+  &:focus {
+    outline: 2px solid #7d00fa;
+    border: none;
+  }
+}
+
+button {
+  width: 100%;
+  margin-top: 1rem;
+}
+
+.erro {
+  color: #d32f2f;
+  font-size: 0.9rem;
+  margin-top: -5px;
+  margin-bottom: 10px;
+  display: inline-block;
+}

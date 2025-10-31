@@ -1,0 +1,13 @@
+<header class="cabecalho">
+  <div class="cabecalho__logo">
+    <a routerLink="/agendamentos">
+      <img src="icones/calendario-roxo.png" alt="Icone calendário">
+      <h2>Lolomakeup</h2>
+    </a>
+  </div>
+
+  <div class="cabecalho__menu">
+    <a routerLink="/perfil">Olá, {{ authService.getNome().split(' ')[0] }}</a>
+    <button (click)="logout()">Sair</button>
+  </div>
+</header>
