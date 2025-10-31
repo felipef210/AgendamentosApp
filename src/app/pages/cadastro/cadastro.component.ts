@@ -3,26 +3,32 @@ import { FormAuthComponent } from "../../components/form-auth/form-auth.componen
 import { CadastroDTO } from '../../core/interfaces/usuario';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 
 @Component({
   selector: 'app-cadastro',
-  imports: [FormAuthComponent],
+  imports: [FormAuthComponent, MatProgressSpinnerModule],
   templateUrl: './cadastro.component.html',
   styleUrl: './cadastro.component.scss'
 })
 export class CadastroComponent {
   private readonly authService: AuthService = inject(AuthService);
   private readonly router: Router = inject(Router);
+  isLoading: boolean = false;
 
   mensagemErro = signal<string>('');
 
   cadastrar(credenciais: CadastroDTO) {
+    this.isLoading = true;
+
     this.authService.cadastrar(credenciais).subscribe({
       next: () => {
+        this.isLoading = false;
         this.router.navigate(['/login']);
       },
 
       error: err => {
+        this.isLoading = false;
         this.mensagemErro.set(err.error.detail);
       }
     })
