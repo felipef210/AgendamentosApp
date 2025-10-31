@@ -6,20 +6,6 @@ Dividido em backend ASP.NET Core e frontend Angular, com autenticação, CRUD de
 
 ## 🚀 Tecnologias
 
-### Backend:
-
-- ASP.NET Core 9;
-
-- Entity Framework Core;
-
-- AutoMapper;
-
-- Identity (usuários e permissões);
-
-- PostgreSQL;
-
-- JWT (autenticação).
-
 ### Frontend:
 
 - Angular 19 (Standalone Components);
@@ -35,23 +21,6 @@ Dividido em backend ASP.NET Core e frontend Angular, com autenticação, CRUD de
 - Guards
 
 ## 🏗 Estrutura do Projeto
-
-### Backend (AgendamentosApi)
-
-O backend foi estruturado em **repository pattern**, tendo assim a camada de repository (onde as consultas ao banco de dados são feitas), camada de services (onde ficam todas as regras de negócio da aplicação) e finalmente a controller (endpoints que se comunicam com o frontend).
-
-```
-AgendamentosApi/
-│
-├─ Data             # Contexto do banco de dados e migrações
-├─ Models/          # Entidades (Agendamento, Usuario)
-├─ DTOs/            # Objetos de transferência (AgendamentoDTO, UsuarioDTO, etc.)
-├─ Profiles         # Configurações dos DTOs
-├─ Repositories/    # Acesso ao banco (AgendamentoRepository)
-├─ Services/        # Regras de negócio (AgendamentoService)
-├─ Controllers/     # Endpoints REST
-└─ Exceptions/      # Exceções customizadas
-```
 
 ### Frontend (AgendamentosApp)
 
@@ -85,16 +54,6 @@ AgendamentosApp/
 
 ## ✨ Funcionalidades
 
-### Backend
-
-✅ CRUD de agendamentos
-
-✅ Validação de horário (não permite duplicidade e nem agendamentos com intervalo menor que 1 hora)
-
-✅ Autenticação com JWT
-
-✅ Controle de permissões (admin vs user)
-
 ### Frontend
 
 📋 Listagem de agendamentos com async | pipe
@@ -121,16 +80,6 @@ AgendamentosApp/
 - Admin vê todos os agendamentos, usuário só os seus;
 
 ## 🛠 Como Rodar o Projeto
-
-### Backend
-
-Tenha a versão do .NET 9 instalada na sua máquina e dentro do repositório AgendamentosApi rode os seguintes comandos:
-
-```
-dotnet ef database update   # Cria banco e aplica migrations
-dotnet run                  # Roda backend
-```
-**Obs:** Estou utilizando o secrets do .NET para guardar a chave de criptografia do token JWT e guardar a string de conexão com o banco de dados.
 
 ### Frontend
 
