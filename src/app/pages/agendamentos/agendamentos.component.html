@@ -1,6 +1,6 @@
 <app-header></app-header>
 
-<main>
+<main data-aos="fade-up" data-aos-duration="1000">
   <section class="secao1">
     <div>
       <h1>{{ authService.getRole() === 'admin' ? 'Todos os Agendamentos' : 'Seus Agendamentos' }}</h1>
@@ -27,7 +27,7 @@
 
       @else {
         @for (agendamento of agendamentos; track $index) {
-          <app-card-agendamento
+          <app-card-agendamento data-aos="fade-up" data-aos-duration="1000"
             [agendamento]="agendamento"
             (delecao)="deletarAgendamento()"
             (alteracao)="editarAgendamento()">
