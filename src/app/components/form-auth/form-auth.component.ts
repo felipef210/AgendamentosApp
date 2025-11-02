@@ -125,20 +125,30 @@ export class FormAuthComponent implements OnInit, OnChanges {
   }
 
   onSubmit() {
+    const email = this.form.get('email')?.value?.toLowerCase() ?? '';
+
     if (this.isLogin()) {
-      const formValue: LoginDTO = this.form.value as LoginDTO;
+      const formValue: LoginDTO = {
+        ...this.form.value,
+        email
+      };
       this.loginSubmit.emit(formValue);
       return;
     }
 
     else if (!this.isLogin() && this.titulo() !== 'Editar perfil') {
-      const formValue: CadastroDTO = this.form.value as CadastroDTO;
+      const formValue: CadastroDTO = {
+        ...this.form.value,
+        email
+      };
       this.cadastroSubmit.emit(formValue);
       return;
     }
 
-    const formValue: EditarPerfilDTO = this.form.value as EditarPerfilDTO;
+    const formValue: EditarPerfilDTO = {
+      ...this.form.value,
+      email
+    };
     this.editarSubmit.emit(formValue);
-
   }
 }
