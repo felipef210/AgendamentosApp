@@ -24,7 +24,7 @@ export class CadastroComponent {
     this.authService.cadastrar(credenciais).subscribe({
       next: () => {
         this.isLoading = false;
-        this.router.navigate(['/login']);
+        this.router.navigate(['/login'], { state: { mensagem: 'Cadastro realizado com sucesso!' } });
       },
 
       error: err => {
