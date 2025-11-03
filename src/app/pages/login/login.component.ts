@@ -4,6 +4,7 @@ import { LoginDTO } from '../../core/interfaces/usuario';
 import { AuthService } from '../../core/services/auth.service';
 import { Router } from '@angular/router';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSnackBar } from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-login',
@@ -18,6 +19,22 @@ export class LoginComponent {
 
   private readonly authService = inject(AuthService);
   private readonly router = inject(Router);
+  private readonly snackBar: MatSnackBar = inject(MatSnackBar);
+
+  constructor() {
+    const state = history.state;
+    const mensagem = state?.mensagem;
+
+    if (mensagem) {
+      this.snackBar.open(mensagem, '', {
+        duration: 4000,
+        horizontalPosition: 'right',
+        verticalPosition: 'top',
+      });
+
+      window.history.replaceState({}, '', this.router.url);
+    }
+  }
 
   logar(usuario: LoginDTO) {
     this.isLoading = true;
