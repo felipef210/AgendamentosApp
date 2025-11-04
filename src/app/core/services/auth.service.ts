@@ -4,10 +4,18 @@ import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
 import { CadastroDTO, EditarPerfilDTO, LoginDTO, UsuarioDTO } from '../interfaces/usuario';
 import { Observable, tap } from 'rxjs';
+import { jwtDecode } from 'jwt-decode';
+
+interface CustomJwtPayload {
+  nome: string;
+  email: string;
+  role: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
+
 export class AuthService {
   private readonly http = inject(HttpClient);
   private readonly router = inject(Router);
@@ -45,13 +53,13 @@ export class AuthService {
     return localStorage.getItem(this.keyToken);
   }
 
-  getJWTClaim(field: string): string {
+  getJWTClaim(field: keyof CustomJwtPayload): string {
     const token = this.getJWTToken();
 
     if(!token)
       return '';
 
-    const dataToken = JSON.parse(atob(token.split('.')[1]));
+    const dataToken = jwtDecode<CustomJwtPayload>(token)
     return dataToken[field];
   }
 
