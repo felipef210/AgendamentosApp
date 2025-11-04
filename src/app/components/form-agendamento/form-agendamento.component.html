@@ -3,7 +3,7 @@
   <select formControlName="servico">
     <option selected disabled value="">Selecione uma opção...</option>
     @for (servico of servicos; track $index) {
-      <option [value]="servico">{{ servico }}</option>
+      <option [value]="servico.id">{{ servico.nome }}</option>
     }
   </select><br>
 

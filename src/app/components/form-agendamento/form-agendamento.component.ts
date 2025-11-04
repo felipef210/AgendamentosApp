@@ -12,6 +12,7 @@ import { AgendamentoDTO, CriarAgendamentoDTO } from '../../core/interfaces/agend
 import { dataAgendamentoValidator } from '../../core/validators/dataAgendamentoValidator';
 import { MatDialog, MatDialogRef } from '@angular/material/dialog';
 import { Dialog } from '@angular/cdk/dialog';
+import { Servico } from '../../core/interfaces/servico';
 
 @Component({
   selector: 'app-form-agendamento',
@@ -20,7 +21,13 @@ import { Dialog } from '@angular/cdk/dialog';
   styleUrl: './form-agendamento.component.scss'
 })
 export class FormAgendamentoComponent implements OnInit {
-  servicos = ['Maquiagem', 'Penteado', 'Sobrancelha', 'Curso'];
+  servicos: Servico[] = [
+    { id: 1, nome:'Maquiagem' },
+    { id: 2, nome: 'Penteado' },
+    { id: 3, nome: 'Sobrancelha' },
+    { id: 4, nome: 'Curso' }
+  ];
+
   mensagemErro: string = '';
 
   @Input()
@@ -42,7 +49,7 @@ export class FormAgendamentoComponent implements OnInit {
     this.dateAdapter.setLocale('pt-BR');
 
     this.form = this.formBuilder.group({
-      servico: [this.agendamento?.servico || null, Validators.required],
+      servico: [this.agendamento ? this.conversorSelect(this.agendamento.servico) : null, Validators.required],
       data: [this.agendamento ? this.formatDate(this.agendamento.dataHoraAgendamento) : null, [Validators.required, dataAgendamentoValidator()]],
       hora: [this.agendamento ? this.formatTime(this.agendamento.dataHoraAgendamento) : null, Validators.required]
     });
@@ -95,7 +102,6 @@ export class FormAgendamentoComponent implements OnInit {
     this.form.markAllAsTouched();
   }
 
-
   private formatDate(data: string | Date) {
     const d = new Date(data);
     return d.toISOString().split('T')[0];
@@ -106,5 +112,15 @@ export class FormAgendamentoComponent implements OnInit {
     const horas = String(d.getHours()).padStart(2, '0');
     const minutos = String(d.getMinutes()).padStart(2, '0');
     return `${horas}:${minutos}`;
+  }
+
+  private conversorSelect(select: string): number {
+    switch(select) {
+        case 'Maquiagem': return 1;
+        case 'Penteado': return 2;
+        case 'Sobrancelha': return 3;
+        case 'Curso': return 4;
+        default: return 0;
+    }
   }
 }
