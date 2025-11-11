@@ -1,11 +1,11 @@
-<section data-aos="fade-up" data-aos-duration="1000">
+<section>
   @if (isLoading) {
     <div class="loading-overlay">
       <mat-spinner></mat-spinner>
     </div>
   }
   @else {
-    <app-form-auth (cadastroSubmit)="cadastrar($event)" [mensagemErro]="mensagemErro()" titulo="Cadastre-se" textoBotao="Cadastre-se"></app-form-auth>
+    <app-form-auth data-aos="fade-up" data-aos-duration="1000" (cadastroSubmit)="cadastrar($event)" [mensagemErro]="mensagemErro()" titulo="Cadastre-se" textoBotao="Cadastre-se"></app-form-auth>
   }
   </section>
 

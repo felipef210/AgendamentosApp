@@ -1,10 +1,10 @@
-<section data-aos="fade-up" data-aos-duration="1000">
+<section>
   @if (isLoading) {
     <div class="loading-overlay">
       <mat-spinner></mat-spinner>
     </div>
   }
   @else {
-    <app-form-auth [isLogin]="login()" (loginSubmit)="logar($event)" [mensagemErro]="mensagemErro" titulo="Login" textoBotao="Login"></app-form-auth>
+    <app-form-auth data-aos="fade-up" data-aos-duration="1000" [isLogin]="login()" (loginSubmit)="logar($event)" [mensagemErro]="mensagemErro" titulo="Login" textoBotao="Login"></app-form-auth>
   }
 </section>
