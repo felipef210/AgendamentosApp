@@ -1,15 +1,37 @@
-import { Component, inject, input, InputSignal, OnChanges, OnInit, output, OutputEmitterRef, signal, SimpleChanges, WritableSignal } from '@angular/core';
+import { Component, inject, input, InputSignal, LOCALE_ID, OnChanges, OnInit, output, OutputEmitterRef, signal, SimpleChanges, WritableSignal } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatDatepickerModule } from '@angular/material/datepicker';
-import { DateAdapter, MatNativeDateModule } from '@angular/material/core';
+import { DateAdapter, MatNativeDateModule, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
 import { RouterLink } from "@angular/router";
 import { NgClass } from '@angular/common';
 import { CadastroDTO, EditarPerfilDTO, LoginDTO, UsuarioDTO } from '../../core/interfaces/usuario';
 import { isMatchValidator } from '../../core/validators/isMatchValidator';
+import { provideMomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { registerLocaleData } from '@angular/common';
+import localePt from '@angular/common/locales/pt';
+import * as moment from 'moment';
+import 'moment/locale/pt-br';
+
+registerLocaleData(localePt);
+moment.updateLocale('pt-br', {
+  weekdaysMin: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb'],
+  weekdaysShort: ['Dom', 'Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sáb']
+});
+
+export const MY_DATE_FORMATS = {
+  parse: { dateInput: 'DD/MM/YYYY' },
+  display: {
+    dateInput: 'DD/MM/YYYY',
+    monthYearLabel: 'MMMM YYYY',
+    dateA11yLabel: 'LL',
+    monthYearA11yLabel: 'MMMM YYYY'
+  }
+};
+
 
 @Component({
   selector: 'app-form-auth',
@@ -25,7 +47,13 @@ import { isMatchValidator } from '../../core/validators/isMatchValidator';
     NgClass
 ],
   templateUrl: './form-auth.component.html',
-  styleUrl: './form-auth.component.scss'
+  styleUrl: './form-auth.component.scss',
+  providers: [
+    { provide: LOCALE_ID, useValue: 'pt-BR' },
+    { provide: MAT_DATE_LOCALE, useValue: 'pt-BR' },
+    { provide: DateAdapter, useClass: MomentDateAdapter, deps: [MAT_DATE_LOCALE] },
+    { provide: MAT_DATE_FORMATS, useValue: MY_DATE_FORMATS },
+  ]
 })
 export class FormAuthComponent implements OnInit, OnChanges {
   passwordRegex: string = '^(?=.*[a-z])(?=.*[A-Z])(?=.*\\d)(?=.*[!@#$%^&*\\-_])[A-Za-z\\d!@#$%^&*\\-_]{8,}$';
