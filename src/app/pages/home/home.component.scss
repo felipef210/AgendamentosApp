@@ -68,6 +68,8 @@ main {
         cursor: pointer;
         transition: .3s ease;
         text-decoration: none;
+        justify-content: center;
+        box-sizing: border-box;
 
         img {
           width: 22px;
@@ -96,6 +98,7 @@ main {
         transition: .3s;
         text-decoration: none;
         color: black;
+        box-sizing: border-box;
 
         &:hover {
           background-color: rgb(239, 237, 241);
@@ -127,15 +130,19 @@ main {
 
     .principal__botoes {
       flex-direction: column;
+      align-items: center;
 
       .principal__botoes__roxo {
         font-size: 1rem;
+        width: 300px !important;
+        height: 55px !important;
       }
 
       .principal__botoes__branco {
         justify-content: center !important;
         font-size: 1rem !important;
-
+        width: 300px !important;
+        height: 55px !important;
       }
     }
   }
