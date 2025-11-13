@@ -29,7 +29,7 @@
       <mat-form-field appearance="outline" [class.full-width]="titulo() === 'Editar perfil'">
         <mat-label>Telefone</mat-label>
         <span matTextPrefix>+55 &nbsp;</span>
-        <input type="tel" matInput placeholder="" formControlName="telefone">
+        <input type="tel" matInput formControlName="telefone" autocomplete="off" autocorrect="off" spellcheck="false">
         <mat-icon matSuffix>phone_enabled</mat-icon>
 
         @if (form.get('telefone')?.hasError('required')) {
