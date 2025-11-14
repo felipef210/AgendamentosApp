@@ -29,7 +29,7 @@
       <mat-form-field appearance="outline" [class.full-width]="titulo() === 'Editar perfil'">
         <mat-label>Telefone</mat-label>
         <span matTextPrefix>+55 &nbsp;</span>
-        <input type="tel" matInput formControlName="telefone" autocomplete="off" autocorrect="off" spellcheck="false">
+        <input type="tel" matInput placeholder="" formControlName="telefone">
         <mat-icon matSuffix>phone_enabled</mat-icon>
 
         @if (form.get('telefone')?.hasError('required')) {
@@ -89,6 +89,12 @@
           }
         </mat-form-field>
       }
+    </div>
+  }
+
+  @if (titulo() === 'Login') {
+    <div class="div__recuperar-senha">
+      <a routerLink="/recuperar-senha" class="link-recuperar-senha">Esqueceu sua senha ?</a>
     </div>
   }
 

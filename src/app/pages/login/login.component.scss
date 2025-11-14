@@ -19,7 +19,7 @@ section {
     justify-content: center;
     align-items: center;
     z-index: 999;
-    transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.35s ease-in-out;
 
     .loading-overlay mat-spinner {
       z-index: 10000;

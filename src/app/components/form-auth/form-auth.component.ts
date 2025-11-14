@@ -10,7 +10,7 @@ import { RouterLink } from "@angular/router";
 import { NgClass } from '@angular/common';
 import { CadastroDTO, EditarPerfilDTO, LoginDTO, UsuarioDTO } from '../../core/interfaces/usuario';
 import { isMatchValidator } from '../../core/validators/isMatchValidator';
-import { provideMomentDateAdapter, MAT_MOMENT_DATE_ADAPTER_OPTIONS, MomentDateAdapter } from '@angular/material-moment-adapter';
+import { MomentDateAdapter } from '@angular/material-moment-adapter';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 import * as moment from 'moment';
