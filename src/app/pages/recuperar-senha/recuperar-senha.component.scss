@@ -1,0 +1,43 @@
+section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background-image: url('../../../../public/background.jpg');
+  background-position: center;
+  background-size: cover;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  h1 {
+    font-size: 3rem;
+    background: linear-gradient(90deg, #9040DE 30%, #B556D2 50%, #D65DB0 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  form {
+    width: 500px;
+    margin-top: 1rem;
+    text-align: center;
+
+    button {
+      width: 100%;
+
+      &:last-child {
+        margin-top: .5rem;
+      }
+    }
+
+    .full-width {
+      width: 100%;
+      margin-bottom: .5rem;
+    }
+  }
+}

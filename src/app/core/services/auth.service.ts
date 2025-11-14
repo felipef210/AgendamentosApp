@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { inject, Injectable, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { environment } from '../../../environments/environment';
-import { CadastroDTO, EditarPerfilDTO, LoginDTO, UsuarioDTO } from '../interfaces/usuario';
+import { CadastroDTO, EditarPerfilDTO, EsqueceuSenhaDTO, LoginDTO, ResetarSenhaDTO, UsuarioDTO } from '../interfaces/usuario';
 import { Observable, tap } from 'rxjs';
 import { jwtDecode } from 'jwt-decode';
 
@@ -47,6 +47,14 @@ export class AuthService {
 
   getUsuarioPorId(): Observable<UsuarioDTO> {
     return this.http.get<UsuarioDTO>(`${this.url}/exibirusuario`);
+  }
+
+  enviarEmailRecuperacaoSenha(email: EsqueceuSenhaDTO): Observable<void> {
+    return this.http.post<void>(`${this.url}/forgot-password`, email);
+  }
+
+  resetarSenha(dto: ResetarSenhaDTO): Observable<void> {
+    return this.http.post<void>(`${this.url}/reset-password`, dto);
   }
 
   getJWTToken(): string | null {

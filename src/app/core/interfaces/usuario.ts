@@ -24,3 +24,14 @@ export interface EditarPerfilDTO {
   telefone: string;
   email: string;
 }
+
+export interface EsqueceuSenhaDTO {
+  email: string;
+}
+
+export interface ResetarSenhaDTO {
+  email: string;
+  token: string;
+  novaSenha: string;
+  confirmarSenha: string;
+}

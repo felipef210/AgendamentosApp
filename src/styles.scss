@@ -35,9 +35,14 @@ html {
   font-family: "Montserrat", sans-serif;
 }
 
-.mat-mdc-form-field-infix {
-  white-space: nowrap !important;
-  overflow: hidden;
+.mat-mdc-snack-bar-container.snack-success {
+  --mdc-snackbar-container-color: #4caf50 !important;
+  --mdc-snackbar-supporting-text-color: white !important;
+}
+
+.mat-mdc-snack-bar-container.snack-error {
+  --mdc-snackbar-container-color: #f44336 !important;
+  --mdc-snackbar-supporting-text-color: white !important;
 }
 
 html, body { height: 100%; }

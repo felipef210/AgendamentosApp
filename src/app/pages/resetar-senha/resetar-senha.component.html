@@ -1,0 +1,39 @@
+<section>
+  <div data-aos="fade-up" data-aos-duration="1000">
+    <h1>Redefina sua senha</h1>
+    <p>Insira a nova senha para sua conta.</p>
+
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Nova Senha</mat-label>
+        <input matInput placeholder="Digite a nova senha" formControlName="senha" [type]="hidePassword() ? 'password' : 'text'">
+        <button type="button" mat-icon-button matSuffix (click)="changeVisibilityPassword()">
+          <mat-icon>{{hidePassword() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+
+        @if (form.get('senha')?.hasError('required')) {
+          <mat-error>A senha é obrigatória</mat-error>
+        }
+
+        @else if (form.get('senha')?.hasError('pattern')) {
+          <mat-error>Use 8 caracteres com número, letra e símbolo</mat-error>
+        }
+      </mat-form-field><br>
+
+      <mat-form-field class="full-width" appearance="outline">
+        <mat-label>Confirmar senha</mat-label>
+        <input [type]="hideConfirmPassword() ? 'password' : 'text'" matInput placeholder="Confirme a nova senha" formControlName="confirmarSenha" type="password">
+        <button type="button" mat-icon-button matSuffix (click)="changeVisibilityConfirmPassword()">
+          <mat-icon>{{hideConfirmPassword() ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+
+        @if (getErroConfirmarSenha()) {
+          <mat-error>{{ getErroConfirmarSenha() }}</mat-error>
+        }
+      </mat-form-field><br>
+
+      <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Redefinir Senha</button><br>
+      <button mat-raised-button routerLink="/">Voltar ao início</button>
+    </form>
+  </div>
+</section>
