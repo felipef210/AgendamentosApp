@@ -8,10 +8,11 @@ import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../core/services/auth.service';
 import { Router, RouterLink } from "@angular/router";
 import { EsqueceuSenhaDTO } from '../../core/interfaces/usuario';
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-recuperar-senha',
-  imports: [MatFormFieldModule, MatIconModule, ReactiveFormsModule, MatInputModule, MatButtonModule, RouterLink],
+  imports: [MatFormFieldModule, MatIconModule, ReactiveFormsModule, MatInputModule, MatButtonModule, RouterLink, MatProgressSpinnerModule],
   templateUrl: './recuperar-senha.component.html',
   styleUrl: './recuperar-senha.component.scss'
 })
@@ -22,6 +23,7 @@ export class RecuperarSenhaComponent implements OnInit {
   private readonly router: Router = inject(Router);
 
   form!: FormGroup;
+  isLoading: boolean = false;
 
   ngOnInit() {
     this.form = this.formBuilder.group({
@@ -31,6 +33,7 @@ export class RecuperarSenhaComponent implements OnInit {
 
   onSubmit() {
     if (this.form.valid) {
+      this.isLoading = true;
       const dto: EsqueceuSenhaDTO = this.form.getRawValue();
 
       this.authService.enviarEmailRecuperacaoSenha(dto).subscribe({
@@ -42,6 +45,8 @@ export class RecuperarSenhaComponent implements OnInit {
             panelClass: ['snack-success']
           });
 
+          this.isLoading = false;
+
           setTimeout(() => this.router.navigate(['/login']), 4000);
         },
 
@@ -52,6 +57,8 @@ export class RecuperarSenhaComponent implements OnInit {
             verticalPosition: 'top',
             panelClass: ['snack-error']
           });
+
+          this.isLoading = false;
 
           setTimeout(() => window.location.reload(), 4000);
 

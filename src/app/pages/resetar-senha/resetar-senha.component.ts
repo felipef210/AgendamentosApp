@@ -9,10 +9,11 @@ import { MatIconModule } from '@angular/material/icon';
 import { ResetarSenhaDTO } from '../../core/interfaces/usuario';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from '../../core/services/auth.service';
+import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 
 @Component({
   selector: 'app-resetar-senha',
-  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, ReactiveFormsModule, RouterLink],
+  imports: [MatFormFieldModule, MatInputModule, MatButtonModule, MatIconModule, ReactiveFormsModule, RouterLink, MatProgressSpinnerModule],
   templateUrl: './resetar-senha.component.html',
   styleUrl: './resetar-senha.component.scss'
 })
@@ -28,7 +29,7 @@ export class ResetarSenhaComponent implements OnInit {
   hideConfirmPassword: WritableSignal<boolean> = signal(true);
   email!: string;
   token!: string;
-
+  isLoading: boolean = false;
   form!: FormGroup;
 
   ngOnInit() {
@@ -73,6 +74,8 @@ export class ResetarSenhaComponent implements OnInit {
         confirmarSenha: this.form.get('confirmarSenha')?.value
       };
 
+      this.isLoading = true;
+
       this.authService.resetarSenha(dto).subscribe({
         next: () => {
           this.snackBar.open('Senha resetada com sucesso! Redirecionando para o login...', '', {
@@ -81,6 +84,8 @@ export class ResetarSenhaComponent implements OnInit {
             verticalPosition: 'top',
             panelClass: ['snack-success']
           });
+
+          this.isLoading = false;
           setTimeout(() => this.router.navigate(['/login']), 4000);
         },
 
@@ -91,6 +96,8 @@ export class ResetarSenhaComponent implements OnInit {
             verticalPosition: 'top',
             panelClass: ['snack-error']
           });
+
+          this.isLoading = false;
           setTimeout(() => window.location.reload(), 4000);
         }
       });
