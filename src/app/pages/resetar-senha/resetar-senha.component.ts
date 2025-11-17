@@ -98,7 +98,7 @@ export class ResetarSenhaComponent implements OnInit {
           });
 
           this.isLoading = false;
-          //setTimeout(() => window.location.reload(), 4000);
+          setTimeout(() => window.location.reload(), 4000);
         }
       });
     }
