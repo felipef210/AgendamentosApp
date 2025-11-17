@@ -50,8 +50,8 @@ export class RecuperarSenhaComponent implements OnInit {
           setTimeout(() => this.router.navigate(['/login']), 4000);
         },
 
-        error: () => {
-          this.snackBar.open('Erro ao enviar e-mail de recuperação de senha. Tente novamente.', '', {
+        error: err => {
+          this.snackBar.open(`${err.error?.detail}`, '', {
             duration: 4000,
             horizontalPosition: 'right',
             verticalPosition: 'top',

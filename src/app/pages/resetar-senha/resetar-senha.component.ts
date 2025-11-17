@@ -89,8 +89,8 @@ export class ResetarSenhaComponent implements OnInit {
           setTimeout(() => this.router.navigate(['/login']), 4000);
         },
 
-        error: () => {
-          this.snackBar.open('Erro ao resetar a senha. Tente novamente.', '', {
+        error: err => {
+          this.snackBar.open(`${err.error?.detail}`, '', {
             duration: 4000,
             horizontalPosition: 'right',
             verticalPosition: 'top',
@@ -98,7 +98,7 @@ export class ResetarSenhaComponent implements OnInit {
           });
 
           this.isLoading = false;
-          setTimeout(() => window.location.reload(), 4000);
+          //setTimeout(() => window.location.reload(), 4000);
         }
       });
     }
