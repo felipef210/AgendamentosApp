@@ -47,15 +47,44 @@ section {
 
     button {
       width: 100%;
+      margin-bottom: .5rem;
+    }
 
-      &:last-child {
-        margin-top: .5rem;
-      }
+    a {
+      width: 100%;
     }
 
     .full-width {
       width: 100%;
       margin-bottom: .5rem;
+    }
+  }
+}
+
+@media screen and (max-width: 520px) {
+  h1 {
+    font-size: 2rem !important;
+  }
+
+  p {
+    font-size: 1rem !important;
+    width: 90% !important;
+    text-align: center !important;
+  }
+
+  .formulario {
+    width: 320px !important;
+
+    mat-form-field {
+      width: 100%;
+    }
+
+    button, a {
+      width: 100% !important;
+    }
+
+    button {
+      margin-bottom: .8rem;
     }
   }
 }

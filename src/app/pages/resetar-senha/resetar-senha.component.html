@@ -10,7 +10,7 @@
       <h1>Redefina sua senha</h1>
       <p>Insira a nova senha para sua conta.</p>
 
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="formulario">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>Nova Senha</mat-label>
           <input matInput placeholder="Digite a nova senha" formControlName="senha" [type]="hidePassword() ? 'password' : 'text'">
@@ -40,7 +40,7 @@
         </mat-form-field><br>
 
         <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Redefinir Senha</button><br>
-        <button mat-raised-button routerLink="/">Voltar ao início</button>
+        <a mat-raised-button routerLink="/">Voltar ao início</a>
       </form>
     </div>
   }

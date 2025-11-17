@@ -9,7 +9,7 @@
     <div data-aos="fade-up" data-aos-duration="1000">
       <h1>Recupere sua conta</h1>
       <p>Insira seu e-mail cadastrado para receber as instruções de recuperação de senha.</p>
-      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="formulario">
         <mat-form-field class="full-width" appearance="outline">
           <mat-label>E-mail</mat-label>
           <input matInput placeholder="Digite o seu e-mail" formControlName="email">
@@ -25,7 +25,7 @@
         </mat-form-field><br>
 
         <button mat-flat-button color="primary" type="submit" [disabled]="form.invalid">Enviar email</button><br>
-        <button mat-raised-button routerLink="/">Voltar ao início</button>
+        <a mat-raised-button routerLink="/">Voltar ao início</a>
       </form>
     </div>
   }
